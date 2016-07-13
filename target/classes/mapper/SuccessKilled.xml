@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxc.dao.SuccessKilledDao">
+    <insert id="insertSuccessKilled">
+      <!--容许主键插入报错-->
+      INSERT IGNORE INTO SUCCESS_KILLED(seckill_id, user_phone, state)
+      VALUE (#{seckillId}, #{userPhone}, 0)
+    </insert>
+    <select id="queryByIdWithSeckill" resultType="com.zxc.entity.SuccessKilled">
+        <!--根据id查询SuccessKilled并映射会Seckill属性, mybatis的连接查询-->
+        SELECT
+        sk.seckill_id,
+        sk.user_phone,
+        sk.state,
+        sk.create_time,
+        s.seckill_id as "seckill.seckillId",
+        s.name as "seckill.name",
+        s.number as "seckill.number",
+        s.start_time as "seckill.startTime",
+        s.end_time as "seckill.endTime",
+        s.create_time as "seckill.createTime"
+        FROM success_killed as sk
+        INNER JOIN seckill as s on sk.seckill_id=s.seckill_id
+        WHERE sk.seckill_id=#{seckillId}
+    </select>
+    <select id="queryByIdAndPhone" resultType="com.zxc.entity.SuccessKilled">
+        SELECT
+        sk.seckill_id,
+        sk.user_phone,
+        sk.state,
+        sk.create_time,
+        s.seckill_id as "seckill.seckillId",
+        s.name as "seckill.name"
+        s.number as "seckill.number",
+        s.start_time as "seckill.startTime",
+        s.end_time as "seckill.endTime",
+        s.create_time as "seckill.createTime"
+        FROM success_killed as sk
+        INNER JOIN seckill as s on sk.seckill_id=s.seckill_id
+        WHERE sk.seckill_id=#{seckillId}
+        AND sk.user_phone=#{userPhone}
+    </select>
+</mapper>
