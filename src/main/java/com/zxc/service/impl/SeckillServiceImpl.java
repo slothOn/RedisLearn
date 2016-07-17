@@ -120,17 +120,13 @@ public class SeckillServiceImpl implements SeckillService {
         map.put("killTime", new Date());
         map.put("result", null);
         try {
+            seckillDao.killByProcedure(map);
             int result = MapUtils.getInteger(map, "result", -2);
-            switch (result){
-                case 1:
-                    return new SeckillExecution(seckillId, SeckillStatNum.SUCCESS);
-                case 0:
-                    return new SeckillExecution(seckillId, SeckillStatNum.END);
-                case -1:
-                    return new SeckillExecution(seckillId, SeckillStatNum.REPEAT_KILL);
-                default:
-                    return new SeckillExecution(seckillId, SeckillStatNum.INNER_ERROR);
+            if(result == 1){
+                SuccessKilled sk = successKilledDao.queryByIdAndPhone(seckillId, userPhone);
+                return new SeckillExecution(seckillId, SeckillStatNum.SUCCESS, sk);
             }
+            return new SeckillExecution(seckillId, SeckillStatNum.stateOf(result));
         }catch (Exception e){
             return new SeckillExecution(seckillId, SeckillStatNum.INNER_ERROR);
         }

@@ -24,11 +24,16 @@ var seckill = {
                 $("#killBtn").one('click', function(){
                     $("#killBtn").addClass("disabled");
                     $.post(killUrl, function(data){
-                        if(data && data['success']){
+                        if(data['success']){
                             var secdata = data['data'];
                             var state = secdata['state'];
                             var stateinfo = secdata['stateInfo'];
                             node.html("<label class='label label-success'>" + stateinfo + "</label>");
+                        }else{
+                            var secdata = data['data'];
+                            var state = secdata['state'];
+                            var stateinfo = secdata['stateInfo'];
+                            node.html("<label class='label label-warning'>" + stateinfo + "</label>");
                         }
                     });
                 });
@@ -49,7 +54,6 @@ var seckill = {
             var killTime = new Date(startTime + 1000);
             seckillbox.countdown(killTime, function(event){
                var format = event.strftime('秒杀时间倒计时: %D天 %H时 %M分 %S秒');
-                alert(format);
                 seckillbox.html(format);
             }).on('finish .countdown', function(){
                 seckill.handleSeckill(seckillId, seckillbox);

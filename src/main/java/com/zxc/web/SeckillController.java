@@ -70,7 +70,8 @@ public class SeckillController {
             return new SeckillResult<SeckillExecution>(false, "用户未登录");
         }
         try {
-            SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId, phone, md5);
+            //SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId, phone, md5);
+            SeckillExecution seckillExecution = seckillService.executeSeckillProcedure(seckillId, phone, md5);
             //秒杀成功
             if(seckillExecution.getState() == 1) return new SeckillResult<SeckillExecution>(true, seckillExecution);
             return new SeckillResult<SeckillExecution>(false, seckillExecution);
