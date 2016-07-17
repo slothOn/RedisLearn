@@ -5,7 +5,7 @@
 <mapper namespace="com.zxc.dao.SeckillDao">
     <update id="reduceNumber">
         <![CDATA[
-         UPDATE
+        UPDATE
           seckill
         SET
           number=number-1
@@ -31,5 +31,13 @@
         ORDER BY create_time DESC
         LIMIT #{offset}, #{limit}
         ]]>
+    </select>
+    <!--Mybatis调用存储过程-->
+    <select id="killByProcedure" statementType="CALLABLE">
+        call execute_seckill(
+          #{seckillId, jdbcType=BIGINT, mode=IN},
+          #{phone, jdbcType=BIGINT, mode=IN},
+          #{killTime, jdbcType=BIGINT, mode=IN},
+          #{result, jdbcType=INTEGER, mode=OUT});
     </select>
 </mapper>

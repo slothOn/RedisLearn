@@ -6,6 +6,7 @@
          id="WebApp_ID" version="3.1">
 
 <display-name>Archetype Created Web Application</display-name>
+
   <!--配置DispatcherServlet并一次加载Spring所有配置-->
   <servlet>
     <servlet-name>seckill-dispatcher</servlet-name>

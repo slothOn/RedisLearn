@@ -8,6 +8,7 @@ import com.zxc.enums.SeckillStatNum;
 import com.zxc.service.SeckillService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ import java.util.List;
 public class SeckillController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    @Autowired
     private SeckillService seckillService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -64,7 +65,7 @@ public class SeckillController {
             method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") long seckillId,
                                                    @PathVariable("md5") String md5,
-                                                   @CookieValue("killPhone") Long phone){
+                                                   @CookieValue("killphone") Long phone){
         if(phone == null){
             return new SeckillResult<SeckillExecution>(false, "用户未登录");
         }
@@ -81,6 +82,7 @@ public class SeckillController {
     }
 
     @RequestMapping(value = "/time/now", method = RequestMethod.GET)
+    @ResponseBody
     public SeckillResult<Long> time(){
         Date date = new Date();
         return new SeckillResult<Long>(true, date.getTime());

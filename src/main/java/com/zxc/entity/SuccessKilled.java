@@ -17,6 +17,13 @@ public class SuccessKilled {
 
     private Seckill seckill;//多对一
 
+    public SuccessKilled(long seckillId, long userPhone, short state, Date createTime, Seckill seckill) {
+        this.seckillId = seckillId;
+        this.userPhone = userPhone;
+        this.state = state;
+        this.createTime = createTime;
+        this.seckill = seckill;
+    }
 
     public long getSeckillId() {
         return seckillId;
@@ -60,4 +67,6 @@ public class SuccessKilled {
                 '}';
     }
 
+    public SuccessKilled() {
+    }
 }

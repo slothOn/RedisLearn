@@ -1,0 +1,17 @@
+{
+  "name": "seckill",
+  "authors": [
+    "slothOn <zxctyzx@163.com>"
+  ],
+  "description": "seckilldemo",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

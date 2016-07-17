@@ -30,4 +30,20 @@ public class SuccessKilledDaoTest {
         List<SuccessKilled> successKilled = successKilledDao.queryByIdWithSeckill(1000);
         System.out.println(successKilled.size());
     }
+
+    @Test
+    public void testInsertSuccessKilled1() throws Exception {
+
+    }
+
+    @Test
+    public void testQueryByIdWithSeckill1() throws Exception {
+
+    }
+
+    @Test
+    public void testQueryByIdAndPhone() throws Exception {
+        SuccessKilled successKilled = successKilledDao.queryByIdAndPhone(1000, 123456);
+        System.out.println(successKilled);
+    }
 }

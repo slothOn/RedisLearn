@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="seckill:war2">
+    <output-path>$PROJECT_DIR$/out/artifacts/seckill_war2</output-path>
+    <root id="archive" name="seckill_war.war">
+      <element id="artifact" artifact-name="seckill:war exploded" />
+    </root>
+  </artifact>
+</component>

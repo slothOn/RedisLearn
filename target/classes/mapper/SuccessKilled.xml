@@ -26,13 +26,13 @@
         WHERE sk.seckill_id=#{seckillId}
     </select>
     <select id="queryByIdAndPhone" resultType="com.zxc.entity.SuccessKilled">
-        SELECT
+       SELECT
         sk.seckill_id,
         sk.user_phone,
         sk.state,
         sk.create_time,
         s.seckill_id as "seckill.seckillId",
-        s.name as "seckill.name"
+        s.name as "seckill.name",
         s.number as "seckill.number",
         s.start_time as "seckill.startTime",
         s.end_time as "seckill.endTime",
